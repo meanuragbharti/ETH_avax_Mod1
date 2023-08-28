@@ -1,31 +1,20 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.18;
+pragma solidity ^0.8.17;
 
-contract module1 {
-    function errorhandle(uint256 a, uint256 b) public pure returns (uint256) {
-        // Using require()
-        require(a != 10, "a should not be ten");
-        require(b != 20, "b should not be twenty");
-        
-        // Using revert() with additional condition
-        if (a < b) {
-            revert("a should be greater than or equal to b");
-        }
+contract Randoms {
+    uint256 public b = 8;
 
-        // Using revert() without additional condition
-        if (a < 5) {
-            revert("a should be greater than or equal to five");
-        }
+    function testAssert(uint256 num) public pure {
+        assert(num != 0);
+    }
 
-        // Using revert() with custom message
-        if (b > 100) {
-            revert("b should not exceed 100");
-        }
+    function divide(uint256 numr, uint256 denm) public pure returns (uint256) {
+        require(numr >= denm, "Numerator must be greater than or equal to denominator");
+        return numr / denm;
+    }
 
-        // Using assert()
-        uint256 result = a - b;
-        assert(result <= a && result <= b);
-
-        return  result;
+    function mult(uint256 a) public view returns (uint256) {
+        require(a > 0, "Value of 'a' must be greater than zero");
+        return a * b;
     }
 }
