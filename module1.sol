@@ -9,8 +9,12 @@ contract Randoms {
     }
 
     function divide(uint256 numr, uint256 denm) public pure returns (uint256) {
-        require(numr >= denm, "Numerator must be greater than or equal to denominator");
-        return numr / denm;
+        if(_numr<_denm){
+           
+            revert("please provide numerator greater than denomenator");
+            
+        }
+        return _numr/_denm;
     }
 
     function mult(uint256 a) public view returns (uint256) {
