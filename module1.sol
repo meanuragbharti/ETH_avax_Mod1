@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity 0.8.18;
 
 contract module1 {
     function errorhandle(uint256 a, uint256 b) public pure returns (uint256) {
@@ -26,6 +26,6 @@ contract module1 {
         uint256 result = a - b;
         assert(result <= a && result <= b);
 
-        return result;
-    }
+        return  result;
+    }
 }
