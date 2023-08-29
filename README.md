@@ -1,45 +1,39 @@
-# Randoms Contract
+Error Handling Example Contract
+This Solidity smart contract showcases various error handling techniques using the assert, revert, and require functions.
 
-This is a Solidity smart contract that demonstrates different error handling techniques using `assert`, `revert`, and `require` functions.
+License
+This contract is released under the MIT License.
 
-## License
+Prerequisites
+Solidity ^0.8.0
+Contract Overview
+The ErrorHandlingExample contract includes the following functions:
 
-This contract is using the MIT License.
-
-## Prerequisites
-
-- Solidity ^0.8.17
-
-## Contract Details
-
-The `Randoms` contract provides the following functions:
-
-### `testAssert(uint num)`
-
-- This function demonstrates the usage of the `assert` function.
-- It takes a `num` parameter and checks if it is not equal to zero using the `assert` statement.
-- If the condition fails, it triggers an "Internal error" and aborts the execution.
-
-### `divide(uint _numr, uint _denm)`
-
-- This function demonstrates the usage of the `revert` function.
-- It takes `_numrr` and `_denm` parameters and performs division.
-- If the `_numr` is less than `_demn`, it reverts the transaction with a custom error message stating that the numerator should be greater than the denominator.
-- If the condition is met, it returns the result of the division.
-
-### `mult(uint a)`
-
-- This function demonstrates the usage of the `require` function.
-- It takes an `a` parameter and performs multiplication with a predefined constant `b`.
-- It first checks if `a` is greater than zero using the `require` statement.
-- If the condition fails, it reverts the transaction with a custom error message stating that the value of `a` should not be zero.
-- If the condition is met, it returns the result of the multiplication.
-
-## Usage
-
-1. Make sure you have Solidity ^0.8.17 installed.
-2. Compile and deploy the `Random` contract to a supported Ethereum network.
-3. Interact with the deployed contract by calling the available functions and providing the required parameters.
-
-## Author 
+assertExample(uint256 x, uint256 y)
+This function demonstrates the application of the assert function.
+It takes two parameters, x and y, and asserts that x must be greater than y.
+If the assertion fails, the transaction will revert due to an internal error.
+The function returns the difference between x and y if the assertion is successful.
+revertExample(uint256 divisor)
+This function illustrates the usage of the revert function.
+The divisor parameter is used to perform a division operation.
+If divisor is zero, the transaction reverts with a custom error message indicating that division by zero is not allowed.
+Otherwise, the function returns the result of dividing 100 by divisor.
+setValue(uint256 _newValue)
+This function showcases the application of the require function.
+The function is restricted to only be called by the owner of the contract (onlyOwner modifier).
+It verifies if the provided _newValue is less than or equal to 1000 using the require statement.
+If the condition is not met, the transaction reverts with a custom error message.
+If the condition is satisfied, the contract's value is updated with _newValue.
+withdraw()
+This function allows the owner to withdraw the contract's balance.
+The function checks if the contract's balance is greater than zero using the require statement.
+If the balance is zero, the transaction reverts with a message indicating an empty balance.
+If the balance is positive, the function attempts to transfer the balance to the owner's address.
+If the transfer fails, the transaction reverts with an error message.
+Instructions
+Ensure you have Solidity ^0.8.0 installed.
+Compile and deploy the ErrorHandlingExample contract to a compatible Ethereum network.
+Interact with the deployed contract by invoking its functions and providing necessary inputs.
+Author
 Anurag Bharti
