@@ -1,4 +1,4 @@
-# Error Handling 
+# Functions and Errors 
 
 This Solidity smart contract showcases various error handling techniques using the `assert`, `revert`, and `require` functions.
 
@@ -10,7 +10,7 @@ This contract is released under the MIT License.
 
 ## Contract Overview:
 
-The `ErrorHandlingExample` contract includes the following functions:
+The `Function and Error` contract includes the following functions:
 
 ### setValue Function:
 
