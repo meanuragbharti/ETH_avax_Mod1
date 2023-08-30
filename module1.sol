@@ -1,45 +1,46 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract ErrorHandlingExample {
-    address public owner;
+contract LogicDemo {
     uint256 public value;
 
-    constructor() {
-        owner = msg.sender;
-        value = 100;
-    }
-
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Only the owner can call this function");
-        _;
-    }
-
-    function setValue(uint256 _newValue) external onlyOwner {
-        require(_newValue <= 1000, "Value cannot exceed 1000");
+    // Function to set the value with a requirement
+    function setValue(uint256 _newValue) external {
+        require(_newValue > value, "New value must be greater than the current value");
         value = _newValue;
     }
 
-    function assertExample(uint256 x, uint256 y) external pure returns (uint256) {
-        // Assert that x is greater than y, otherwise, the transaction will revert.
-        assert(x > y);
-        return x - y;
+    // Function to perform an assertion
+    function performAssertion(uint256 x, uint256 y) external pure returns (uint256) {
+        assert(x != y); // Ensure x is not equal to y
+        
+        uint256 result = x * y;
+        return result;
     }
 
-    function revertExample(uint256 divisor) external pure returns (uint256) {
-        // Revert if divisor is 0, preventing division by zero.
-        require(divisor != 0, "Cannot divide by zero");
-        return 100 / divisor;
-    }
+    // Function to demonstrate  revert
+    function sqrt(uint256 x) external pure returns (uint256) {
+        // Square root calculation using binary search algorithm
+        if (x <2) {
+            revert("Input can't be less than 2");
+        }
 
-    function withdraw() external onlyOwner {
-        uint256 balance = address(this).balance;
+        if (x == 0) {
+            return 0;
+        }
 
-        // Revert the transaction if the balance is zero.
-        require(balance > 0, "Contract balance is empty");
+        uint256 left = 1;
+        uint256 right = x;
 
-        // Transfer the contract balance to the owner.
-        (bool success, ) = owner.call{value: balance}("");
-        require(success, "Transfer failed");
+        while (left < right) {
+            uint256 mid = (left + right) / 2;
+            if (mid <= x / mid) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+
+        return left - 1;
     }
 }
