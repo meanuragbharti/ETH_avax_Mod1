@@ -12,35 +12,30 @@ This contract is released under the MIT License.
 
 The `ErrorHandlingExample` contract includes the following functions:
 
-### assertExample(uint256 x, uint256 y)
+### setValue Function:
 
-- This function demonstrates the application of the `assert` function.
-- It takes two parameters, `x` and `y`, and asserts that `x` must be greater than `y`.
-- If the assertion fails, the transaction will revert due to an internal error.
-- The function returns the difference between `x` and `y` if the assertion is successful.
+This function allows updating the value stored in the smart contract.
+It takes a parameter _newValue as input.
+It uses the require() statement to enforce a condition: _newValue must be greater than the current stored value.
+If the condition is not met, the function will revert with an error message.
+If the condition is met, the value in the contract is updated with _newValue.
 
-### revertExample(uint256 divisor)
+### performAssertion Function:
 
-- This function illustrates the usage of the `revert` function.
-- The `divisor` parameter is used to perform a division operation.
-- If `divisor` is zero, the transaction reverts with a custom error message indicating that division by zero is not allowed.
-- Otherwise, the function returns the result of dividing 100 by `divisor`.
+This function demonstrates the usage of the assert() statement.
+It takes two parameters, x and y.
+The function asserts that x is not equal to y.
+If the assertion fails (i.e., x is equal to y), the contract execution will halt and any changes made are reverted.
+If the assertion succeeds, the function performs a multiplication operation on x and y and returns the result.
 
-### setValue(uint256 _newValue)
+### sqrt Function:
 
-- This function showcases the application of the `require` function.
-- The function is restricted to only be called by the owner of the contract (`onlyOwner` modifier).
-- It verifies if the provided `_newValue` is less than or equal to 1000 using the `require` statement.
-- If the condition is not met, the transaction reverts with a custom error message.
-- If the condition is satisfied, the contract's `value` is updated with `_newValue`.
-
-### withdraw()
-
-- This function allows the owner to withdraw the contract's balance.
-- The function checks if the contract's balance is greater than zero using the `require` statement.
-- If the balance is zero, the transaction reverts with a message indicating an empty balance.
-- If the balance is positive, the function attempts to transfer the balance to the owner's address.
-- If the transfer fails, the transaction reverts with an error message.
+This function calculates the integer square root of a given non-negative input.
+It uses a binary search algorithm to find the square root.
+The function first checks if the input is negative; if it is, the function immediately reverts with an error message using the revert() statement.
+If the input is zero, the function returns 0.
+Otherwise, it performs a binary search between 1 and the input to find the largest integer whose square is less than or equal to the input.
+Finally, the function returns the integer square root value.
 
 ## Instructions:
 
